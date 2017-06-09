@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>沙箱模式</title>
+</head>
+<body>
+<script>
+    var my_load = (function () {
+        var data = [];
+
+        window.onload = function () {
+            for (var i = 0; i < data.length; i++){
+                data[i]();
+            }
+        };
+
+        return {
+            add_event: function (event) {
+                data.push(event);
+            },
+            remove_event: function (event) {
+                for (var i = 0; i < data.length; i++){
+                    if (data[i] == event){
+                        data.splice(i, 1);
+                    }
+                }
+            }
+        }
+    })();
+
+    my_load.add_event(function () {
+        console.log("event1 added");
+    });
+
+    function event2 () {
+        console.log("event2 added");
+    }
+    my_load.add_event(event2);
+    my_load.add_event(function () {
+        console.log("event3 added");
+    });
+    my_load.remove_event(event2);
+
+</script>
+</body>
+</html>

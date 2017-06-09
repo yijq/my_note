@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ES5中的数组方法</title>
+</head>
+<body>
+<script>
+
+    //forEach
+    var arr1 = ["abs",/\w+/,"","__","{}"];
+
+    arr1.forEach(function (v,i){
+       console.log("arr1[" + i + "]" + "=====" + v);
+    });
+
+    //map
+    var arr2 = [ 1, 4 ,45 , 4, 5, 4, 6, 4, 6,10 ];
+    var arr2_1 = arr2.map(function (v,i) {
+        return v + 100;
+    });
+    console.log(arr2_1);
+    //filter
+    var arr3 = [ 1, 4 ,45 , 4, 5, 4, 6, 4, 6,10 ];
+
+    var arr3_1 = arr3.filter(function(v,i){
+        if (v < 10) {
+            return true;
+        }
+    });
+    console.log(arr3_1);
+    //实现filter
+    /*function filter(arr, callback) {
+        var newArr = [];
+
+        for (var i = 0; i < arr.length; i++) {
+            var flag = condition(arr[i], i, arr);
+
+            if (flag == true) {
+                newArr[newArr.length] = arr[i];
+            }
+
+        }
+
+        return newArr;
+    }
+
+    function condition(element, index, array) {
+        if (element > 20) {
+            return true;
+        }
+
+        return false;
+    }
+    var arr = [21,3,34,35,45,7,78,12];
+    console.log(arr);
+    var newArr = filter(arr,condition);
+    console.log(newArr);*/
+    function my_filter( arr,fn ){
+        var new_arr = [];
+        for (var i = 0; i < arr.length; i++){
+            var flag = fn(arr[i], i, arr);
+            if(flag == true) {
+                new_arr[new_arr.length] = arr[i];
+            }
+        }
+        return new_arr;
+    }
+    //every
+    var arr4 = [ 45,2,35,54,45,4,15,4,64,6,12 ];
+
+    var arr_4_1 = arr4.every(function(v,i,arr){
+        return typeof v === "number";
+
+    });
+    console.log(arr_4_1);
+    //some
+    var arr5 = [ "45",2,35,54,45,4,15,4,64,6,12 ];
+
+    var arr5_1 = arr5.some( function (v,i,arr) {
+        return typeof v == "string";
+    } );
+    console.log(arr5_1);
+    //indexOf()
+    var arr6 = [ "45",4,35,54,45,4,15,4,64,6,12 ];
+    console.log(arr6.indexOf(4));// 1
+    console.log(arr6.indexOf(4,2));// 5
+    console.log(arr6.indexOf(4,6));// 7
+    //lastIndexOf()
+    console.log(arr6.lastIndexOf(4));// 7
+</script>
+</body>
+</html>

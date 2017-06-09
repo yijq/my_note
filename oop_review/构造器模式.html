@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>构造器模式</title>
+</head>
+<body>
+<script>
+    function Person (name){
+        this.name = name;
+//        return 123;
+        return {        // 当return后的值为基本数据类型时则忽略，当值为引用类型时则忽略this。
+            name : "Bob"
+        };
+    }
+
+    var p1 = new Person("Nicholas");
+    console.log(p1);
+</script>
+</body>
+</html>

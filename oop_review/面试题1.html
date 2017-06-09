@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var length = 10;
+    function fn() {
+        console.log( this.length );
+    }
+    var obj = {
+        length: 5,
+        method: function ( fn ) {
+            fn();// 10 函数调用模式，调用fn时，回到声明fn函数的作用与众，在逐层向外寻找length，最终找到window的length为10
+            arguments[ 0 ](); // 2  方法调用模式，调用的对象为arguments数组对象，因此长度为2
+//            console.log(arguments.fn);
+//            console.log(arguments);
+            console.log(this);
+        }
+    };
+    obj.method( fn, 1 );
+</script>
+</body>
+</html>

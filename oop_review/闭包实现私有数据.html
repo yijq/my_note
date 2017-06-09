@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>闭包实现私有数据</title>
+</head>
+<body>
+<script>
+    function createPerson(name, age, gender) {
+        var gender_changed = false;
+        return {
+            get_name: function () {
+                return name;
+            },
+            set_name: function (val) {
+                name = val;
+            },
+            get_age: function () {
+                return age;
+            },
+            set_age: function (val) {
+                age = val;
+            },
+            get_gender: function () {
+                return gender;
+            },
+            set_gender: function (val) {
+                if (gender_changed == false) {
+                    gender = val;
+                    gender_changed = true;
+                } else {
+                    throw new Error("You has changed gender!!!");
+                }
+            }
+        }
+    }
+
+    var p1 = createPerson("Nicholas",120,"male");
+    console.log(p1.get_age());
+    p1.set_age(150);
+    console.log(p1.get_age());
+    console.log(p1.get_gender());
+    p1.set_gender("female");
+    console.log(p1.get_gender());
+    p1.set_gender("male");
+</script>
+</body>
+</html>

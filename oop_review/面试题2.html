@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>面试题2</title>
+</head>
+<body>
+<script>
+    function Foo(){
+        getName = function(){ alert(1); };
+        return this;
+    }
+    function getName(){
+        alert(5);
+    }
+    Foo.getName = function(){ alert(2); };// 这行中的getName存在"Foo"这个字符串对象中，与Foo所指向的函数体中的getName没有直接关系
+    Foo.prototype.getName = function(){ alert(3); };
+    getName = function(){ alert(4); };
+
+    Foo.getName();// 2 此处调用的是"Foo"字符串中的getName，因此为2;
+    getName();// 4 此处调用的是window中的getName方法，因此为4；
+    Foo().getName();// 1 先执行Foo，将window中的getName覆盖了，函数中的this指向window，因此为1
+    getName();// 1 window中的getName被函数Foo中的getName覆盖了，因此为1
+    new Foo.getName();// 2 执行new运算符，先创建一个空的对象，再将Foo.getName()的作用域赋给之前的空对象，然后执行Foo.getName中的代码，就是在这时执行alert(2);在窗口中打印出了2，最后将对象返回(这时没有变量接收)。
+    new Foo().getName();// 3 先执行new Foo()：先创建一个空对象，再将函数作用域赋给对象，然后执行函数中的代码（这时函数中执行一个赋值语句，在执行return this；返回的是空对象本身），最后返回了一个空对象。再执行getName();由于空对象本身没有这个方法，继续在对象的原型中寻找这个方法，最后找到了alert(3);最后打印出了3。
+    new new Foo().getName();// 3 先执行第二个new运算符，new Foo();返回一个空对象假设为o，因此再执行 new o.getName(); 先创建一个空对象，再将函数的作用域赋给新对象，然后执行函数中的代码，这时执行的是o的原型中的getName方法，在窗口中打印出3，最后将创建的对象返回（这时也没有变量接收这个对象）。
+</script>
+</body>
+</html>

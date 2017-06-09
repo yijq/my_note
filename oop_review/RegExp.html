@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>RegExp</title>
+</head>
+<body>
+<script>
+    var regex1 = /\w+/;
+    var regex2 = new RegExp('\\w+');// 字面量模式转为字符串模式时要注意双重转义。
+
+    var str = "asd";
+    console.log(regex1.test(str));
+    console.log(regex2.test(str));
+    console.log(regex1.exec(str));
+    console.log(regex2.exec(str));
+</script>
+</body>
+</html>

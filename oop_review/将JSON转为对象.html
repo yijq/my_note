@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>将JSON转为对象</title>
+</head>
+<body>
+<script>
+    console.log(123);
+
+    var data = '[{"name": "Nicholas"},{"name": "Kingkong"}]';
+
+    var o1 = eval( '('+ data +')');
+    var o2 = (new Function("return " + data))();
+    var o3 = JSON.parse( data );
+
+
+</script>
+</body>
+</html>

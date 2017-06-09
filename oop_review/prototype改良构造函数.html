@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>prototype改良函数</title>
+</head>
+<body>
+<script>
+    function Person (name) {
+        this.name = name;
+    }
+
+    Person.prototype.sayName = function () {
+        alert(this.name);
+    };
+
+    var p1 = new Person("Nicholas");
+
+    console.log(p1);
+//    p1.sayName();
+    console.log(p1.constructor);
+    console.log(p1.__proto__);
+    console.log(p1.prototype);
+    console.log(Person.prototype.__proto__);
+    console.log(Person.prototype);
+    console.log(Person.prototype.constructor);
+    console.log(Person.constructor);
+    console.log(Person.__proto__);
+    console.log(Person.__proto__.prototype);
+    console.log(Person.__proto__.constructor);
+    console.log(Person.__proto__.__proto__);
+    console.log(Person.__proto__.__proto__.constructor);
+</script>
+</body>
+</html>

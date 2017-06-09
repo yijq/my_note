@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>callee与caller</title>
+</head>
+<body>
+<script>
+    function fn1 () {
+        console.log(arguments.callee === fn1);
+        console.log(fn1.caller);
+    }
+
+    function fn2 () {
+        fn1();
+    }
+
+    fn2();
+</script>
+</body>
+</html>

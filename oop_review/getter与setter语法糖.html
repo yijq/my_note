@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>getter与setter语法糖</title>
+</head>
+<body>
+<script>
+    function createPerson (name,age,gender) {
+        var gender_changed = false;
+        return {
+            get name () {
+                return name;
+            },
+            set name (val) {
+                name = val;
+            },
+            get age () {
+                return age;
+            },
+            set age (val) {
+                age = val;
+            },
+            get gender () {
+                return gender;
+            },
+            set gender (val) {
+                if (gender_changed == false) {
+                    gender = val;
+                    gender_changed = true;
+                } else {
+                    throw new Error("You has changed gender!");
+                }
+            }
+        }
+    }
+
+    var p1 = createPerson("Nicholas",100,"male");
+    console.log(p1);
+    console.log(p1.name);
+    p1.name = "Tom";
+    console.log(p1.name);
+    console.log(p1.gender);
+    p1.gender = "female";
+    console.log(p1.gender);
+//    p1.gender = "male";
+    var p2 = createPerson("Kingkong",100,"male");
+    console.log(p2);
+</script>
+</body>
+</html>

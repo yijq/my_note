@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>原型上绑定方法</title>
+</head>
+<body>
+<script>
+    var o = {
+        method: function () {
+            console.log("get it");
+        }
+    };
+
+    function Person () {}
+    function Student () {
+        this.method = Person.prototype.method;
+    }
+
+    Person.prototype = o;
+    Student.prototype = new Person();
+
+    var s1 = new Student();
+
+    s1.method();
+    console.log(s1.__proto__.__proto__.method == s1.method);
+</script>
+</body>
+</html>

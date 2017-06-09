@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Object.create</title>
+</head>
+<body>
+<script>
+    var o1 = {
+        name: "Nicholas",
+        age: 12
+    };
+
+    var o2 = Object.create(o1);
+
+    console.log(o2);
+    console.log(o2.prototype);
+    console.log(o2.constructor);
+    console.log(o2.__proto__);
+
+    Object.create = function (o) {
+        function F(){}
+        F.prototype = o;
+        return new F();
+    };
+</script>
+</body>
+</html>

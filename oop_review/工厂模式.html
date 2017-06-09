@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>工厂模式</title>
+</head>
+<body>
+<script>
+    function createPerson (name,age,gender) {
+        var p = {};
+        p.name = name;
+        p.age = age;
+        p.gender = gender;
+        return p;
+    }
+
+    p1 = createPerson("Nicholas","100","男");
+    var p2 = createPerson("Kingkong","100","男");
+
+    console.log(p1);
+    console.log(p2);
+
+    console.log(window.p1);
+</script>
+</body>
+</html>

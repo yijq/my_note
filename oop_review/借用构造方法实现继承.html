@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>借用构造方法实现继承</title>
+</head>
+<body>
+<script>
+    function Person (name,age,gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    function Student (name,age,gender,hobby) {
+        Person.call(this,name,age,gender);
+        this.hobby = hobby;
+    }
+
+    var s1 = new Student("Tom",100,"male","football");
+    console.log(s1);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>基本元字符与限定元字符</title>
+</head>
+<body>
+<script>
+    //基本元字符
+    // . 表示人一个非换行字符
+    // () 表示分组和提高优先级
+    // [] 表示一个出现在[]中的字符
+    // | 或，优先级最低
+
+    //限定元字符
+    // * 紧跟在后面的一个字符或一组字符出现0次或多次
+    // + 紧跟在后面的一个字符或一组字符出现1次或多次
+    // ? 紧跟在后面的一个字符或一组字符出现0次或1次
+    // {n} 紧跟在后面的一个字符或一组字符出现n次
+    // {n,} 紧跟在后面的一个字符或一组字符至少出现n次
+    // {,m} 紧跟在后面的一个字符或一组字符最多出现m次
+    // {n,m} 紧跟在后面的一个字符或一组字符至少出现n次，最多出现m次。
+
+    // 首尾正则表达式
+    // ^ 表示开头
+    // $ 表示结尾
+
+    var p1 = /^a+$/;
+    var p2 = /^a$/;
+
+    //匹配身份证
+    var id_card = /^[0123456789]{17}[0123456789x]$/;
+
+    //匹配邮箱
+    var mail = /^([0-9a-zA-Z]+)@([0-9a-zA-Z]+)(\.[0-9a-zA-Z])+$/;
+    console.log(mail.test("13487@qq.com"));
+    console.log(mail.test("13487@.com"));
+
+    // 匹配一个数字
+    num1 = /^([1-9][0-9]*|0)$/;
+    num2 = /^([1-9][0-9]+|[0-9])$/;
+
+    // 匹配0-255中的数字
+
+    num3 = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/;
+    console.log(num3.test("123"));
+    console.log(num3.test("256"));
+    console.log(num3.test("056"));
+
+    // 匹配小数
+
+    num4 = /^(-?[1-9][0-9]*\.[0-9]*[1-9])$/;
+
+    // 简写元字符
+
+    // \s 表示空格字符
+    // \S 表示费空格字符
+    // \w 表示字符，包括，字母，数字下划线
+    // \W 表示非字符
+    // \d 表示数字
+    // \D 表示非数字
+
+    // exec表示提取
+    var str1 = 'abc123def456ghij789klum';
+    var p3 = /\d+/g;
+    /*for (var i = 0; i < 3; i++){
+        console.log(p3.exec(str1));
+    }*/
+    var res1;
+    while (res1 = p3.exec(str1)) {
+        console.log(res1);
+    }
+
+    var str2 = '我有一个邮箱, 是 itcast@itcast.cn, 还有 abc@126.com, 和 1234567@qq.com';
+    var p4 = /(?:[0-9a-zA-Z]+)@([0-9a-zA-Z]+)(\.[0-9a-zA-Z])+/g;
+
+    var res2;
+//    console.log(p4.exec(str2));
+    while (res2 = p4.exec(str2)) {
+        console.log(res2);
+    }
+
+    var str3 = "123<div>456</div>78<div>9</div>0";
+
+    var p5 = /<(\w+)>.*?<\/\1>/g;
+    var res3;
+    console.log(p5.exec(str3));
+    while (res3 = p5.exec(str3)) {
+        console.log(res3);
+    }
+    // 替换
+    console.log("abc123".replace(/(\d+)/, "d$1"));
+
+</script>
+</body>
+</html>
